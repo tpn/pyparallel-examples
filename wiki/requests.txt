@@ -1,0 +1,63 @@
+[2264] GET /json HTTP/1.1 
+[2264] Host: 192.168.1.3:8080 
+[2264] Connection: keep-alive 
+[2264] Cache-Control: max-age=0 
+[2264] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8 
+[2264] User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36 
+[2264] DNT: 1 
+[2264] Accept-Encoding: gzip, deflate, sdch 
+[2264] Accept-Language: en-US,en;q=0.8 
+[2264]  
+[2264] GET /json HTTP/1.1 
+[2264] Host: 192.168.1.3:8080 
+[2264] Connection: keep-alive 
+[2264] Cache-Control: max-age=0 
+[2264] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8 
+[2264] User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36 
+[2264] DNT: 1 
+[2264] Accept-Encoding: gzip, deflate, sdch 
+[2264] Accept-Language: en-US,en;q=0.8 
+[2264]  
+[2264] GET /json HTTP/1.1 
+[2264] Host: 192.168.1.3:8080 
+[2264] Connection: keep-alive 
+[2264] Cache-Control: max-age=0 
+[2264] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8 
+[2264] User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36 
+[2264] DNT: 1 
+[2264] Accept-Encoding: gzip, deflate, sdch 
+[2264] Accept-Language: en-US,en;q=0.8 
+[2264]  
+[1752] SHIMVIEW: ShimInfo(Complete) 
+[2264] GET /json HTTP/1.1 
+[2264] User-Agent: curl/7.41.0 
+[2264] Host: raptor:8080 
+[2264] Accept: */* 
+[2264]  
+[2264] GET /json HTTP/1.1 
+[2264] Host: 192.168.1.3:8080 
+[2264] Connection: keep-alive 
+[2264] Cache-Control: max-age=0 
+[2264] Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8 
+[2264] User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36 
+[2264] DNT: 1 
+[2264] Accept-Encoding: gzip, deflate, sdch 
+[2264] Accept-Language: en-US,en;q=0.8 
+[2264]  
+[2264] GET /wiki HTTP/1.1 
+[2264] Range: bytes=100-200 
+[2264] User-Agent: curl/7.41.0 
+[2264] Host: raptor:8080 
+[2264] Accept: */* 
+[2264]  
+[5196] SHIMVIEW: ShimInfo(Complete) 
+[8568] SHIMVIEW: ShimInfo(Complete) 
+[2264] GET /json HTTP/1.1 
+[2264] Accept: image/jpeg, application/x-ms-application, image/gif, application/xaml+xml, image/pjpeg, application/x-ms-xbap, */* 
+[2264] Accept-Language: en-US,en;q=0.5 
+[2264] User-Agent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.3; WOW64; Trident/7.0; .NET4.0E; .NET4.0C; .NET CLR 3.5.30729; .NET CLR 2.0.50727; .NET CLR 3.0.30729) 
+[2264] Accept-Encoding: gzip, deflate 
+[2264] Host: raptor:8080 
+[2264] DNT: 1 
+[2264] Connection: Keep-Alive 
+[2264]  
