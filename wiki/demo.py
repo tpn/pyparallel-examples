@@ -58,15 +58,15 @@ def join_path(*args):
 # Configurables -- Change These!
 #===============================================================================
 # Change this to the directory containing the downloaded files.
-#DATA_DIR = r'F:\data'
-DATA_DIR = './data'
+DATA_DIR = r'd:\data'
+#DATA_DIR = './data'
 
 # If you want to change the hostname listened on from the default (which will
 # resolve to whatever IP address the computer name resolves to), do so here.
 HOSTNAME = socket.gethostname()
 # E.g.:
 # HOSTNAME = 'localhost'
-IPADDR = socket.gethostbyname(HOSTNAME)
+IPADDR = '0.0.0.0'
 PORT = 8080
 
 #===============================================================================
@@ -252,27 +252,31 @@ class route:
         self.func = func
         self.args = args
         self.kwds = kwds
+        self.path = None
         self.funcname = func.__code__.co_name
 
         if not args:
-            routes[self.funcname] = func
+            self.path = self.funcname
         else:
-            routes[args[0]] = func
+            self.path = args[0]
 
-    def __get__(self, *args, **kwds):
-        return partial(self, args[0])
+        if self.path[0] != '/':
+            self.path = '/' + self.path
+
+        routes[self.path] = self.funcname
+
+    def __get__(self, obj, objtype=None):
+        if not obj:
+            return self.func
+        return partial(self, obj)
 
     def __call__(self, *_args, **_kwds):
         obj = _args[0]
         request = _args[1]
         # This will be the full path received, minus query string and fragment,
         # e.g. '/offsets/Python'.
-        path = request.path
-        # Remove the first slash...
-        if path[0] == '/':
-            path = path[1:]
-        # And then the number of bytes of the funcname (e.g. len('offsets')).
-        path = path[len(self.funcname):]
+        path = request.path[len(self.path):]
+
         # In the case of '/offsets/Python', that'll leave us with '/Python',
         # and we want to lop off the slash.  In the case of, say, '/stats',
         # path will be empty.
@@ -285,19 +289,19 @@ class route:
         # And that's it, the new path is passed to the callable as the second
         # positional parameter.  If a fragment was present, pass that next.
         # Then pass a query string as **kwds if present.
-        args = [ obj, request, ]
+        args = []
         if path:
             args.append(path)
         if request.fragment:
             args.append(fragment)
 
         try:
-            result = self.func(*args, **request.query)
+            result = self.func(obj, request, *args, **request.query)
             return result
         except TypeError:
             try:
                 # Try without query string **kwds.
-                return self.func(*args)
+                return self.func(obj, request, *args)
             except TypeError:
                 # Try without fragment.
                 try:
@@ -360,18 +364,27 @@ class WikiServer(HttpServer):
 
     @route
     def hello(self, request, *args, **kwds):
-        return json_serialization(request, { 'message': 'Hi!' })
+        j = { 'args': args, 'kwds': kwds }
+        return json_serialization(request, j)
+
+    @route
+    def title(self, request, name, *args, **kwds):
+        items = titles.items(name)
+        return json_serialization(request, items)
 
     @property
     def routes(self):
         return routes
 
 
-
 #===============================================================================
 # Main
 #===============================================================================
+dummy = titles.items('Zzz')
 def main():
+    # Force the codecs utf_32_le machinery to be initialized from the main
+    # thread, otherwise our parallel threads will raise 'unknown encoding:
+    # utf_32_le' when we attempt to access any trie keys.
     #dummy = titles.items('Zzz')
     server = async.server(IPADDR, PORT)
     async.register(transport=server, protocol=WikiServer)
